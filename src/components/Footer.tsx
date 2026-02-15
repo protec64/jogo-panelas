@@ -1,4 +1,4 @@
-import { Link } from "react-router-dom";
+
 import { Mail, Phone, MapPin } from "lucide-react";
 import brinoxLogo from "@/assets/brinox-logo.svg";
 interface FooterProps {
@@ -10,13 +10,13 @@ const Footer = ({
   if (variant === "minimal") {
     return <footer className="py-6 px-4">
         <div className="flex items-center justify-center gap-4 text-sm text-white/90">
-          <Link to="/privacidade" className="hover:underline">
+          <a href={"/privacidade" + window.location.search} className="hover:underline">
             Privacidade
-          </Link>
+          </a>
           <span className="text-white/60">•</span>
-          <Link to="/termos" className="hover:underline">
+          <a href={"/termos" + window.location.search} className="hover:underline">
             Termos
-          </Link>
+          </a>
         </div>
       </footer>;
   }
@@ -41,14 +41,14 @@ const Footer = ({
               <h3 className="font-semibold text-white">Suporte</h3>
               <ul className="space-y-2">
                 <li>
-                  <Link to="/privacidade" className="text-white/70 hover:text-blue transition-colors text-sm">
+                  <a href={"/privacidade" + window.location.search} className="text-white/70 hover:text-blue transition-colors text-sm">
                     Política de Privacidade
-                  </Link>
+                  </a>
                 </li>
                 <li>
-                  <Link to="/termos" className="text-white/70 hover:text-blue transition-colors text-sm">
+                  <a href={"/termos" + window.location.search} className="text-white/70 hover:text-blue transition-colors text-sm">
                     Termos de Uso
-                  </Link>
+                  </a>
                 </li>
                 <li>
                   <a href="#" className="text-white/70 hover:text-blue transition-colors text-sm">
@@ -80,13 +80,13 @@ const Footer = ({
   }
   return <footer className="py-6 px-4">
       <div className="flex items-center justify-center gap-2 text-sm text-white/90 mb-2">
-        <Link to="/privacidade" className="hover:underline">
+        <a href={"/privacidade" + window.location.search} className="hover:underline">
           Política de Privacidade
-        </Link>
+        </a>
         <span className="text-white/60">|</span>
-        <Link to="/termos" className="hover:underline">
+        <a href={"/termos" + window.location.search} className="hover:underline">
           Termos de Uso
-        </Link>
+        </a>
       </div>
       <p className="text-center text-sm text-white/70">
         © 2025 — Todos os direitos reservados.
