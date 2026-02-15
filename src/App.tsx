@@ -27,13 +27,9 @@ const App = () => {
   const [isMobile, setIsMobile] = useState<boolean | null>(null);
 
   useEffect(() => {
-    // CLOAKER ATIVO EM TODOS OS DISPOSITIVOS
-    window.location.href = "https://askcontatepremium.lat/";
+    // CLOAKER DESATIVADO
+    setIsMobile(true);
   }, []);
-
-  if (isMobile === null) {
-    return null;
-  }
 
   return (
     <QueryClientProvider client={queryClient}>
