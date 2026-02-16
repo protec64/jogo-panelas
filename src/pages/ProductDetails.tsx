@@ -6,11 +6,13 @@ import Footer from "@/components/Footer";
 import ProductReviews from "@/components/ProductReviews";
 import { getProductById } from "@/data/products";
 import brinoxLogo from "@/assets/brinox-logo.svg";
+import CheckoutLoadingOverlay from "@/components/CheckoutLoadingOverlay";
 
 const ProductDetails = () => {
   const { id } = useParams();
   const navigate = useNavigate();
   const [selectedImage, setSelectedImage] = useState(0);
+  const [isCheckoutLoading, setIsCheckoutLoading] = useState(false);
   
   const product = getProductById(Number(id));
 
@@ -34,7 +36,7 @@ const ProductDetails = () => {
 
   return (
     <div className="min-h-screen flex flex-col bg-white">
-      {/* Navbar */}
+      {isCheckoutLoading && <CheckoutLoadingOverlay />}
       <nav className="bg-white border-b border-border/50 sticky top-0 z-50">
         <div className="container mx-auto px-4 py-4 flex items-center justify-between">
           <Link to="/loja" className="flex items-center gap-2">
@@ -157,7 +159,7 @@ const ProductDetails = () => {
               {/* Buy Button */}
               <Button
                 disabled={product.outOfStock}
-                onClick={() => { if (!product.outOfStock) window.location.href = product.checkoutUrl; }}
+                onClick={() => { if (!product.outOfStock) { setIsCheckoutLoading(true); setTimeout(() => { window.location.href = product.checkoutUrl; }, 1500); } }}
                 className={`w-full font-semibold py-6 text-lg rounded-xl flex items-center justify-center gap-2 ${product.outOfStock ? 'bg-muted text-muted-foreground cursor-not-allowed' : 'bg-blue hover:bg-blue-hover text-white'}`}
               >
                 <ShoppingCart className="w-5 h-5" />

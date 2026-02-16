@@ -6,9 +6,11 @@ import Footer from "@/components/Footer";
 import { products, Product } from "@/data/products";
 import confetti from "canvas-confetti";
 import brinoxLogo from "@/assets/brinox-logo.svg";
+import CheckoutLoadingOverlay from "@/components/CheckoutLoadingOverlay";
 const Loja = () => {
   const [cartCount] = useState(0);
   const [showPrizeBanner, setShowPrizeBanner] = useState(false);
+  const [isCheckoutLoading, setIsCheckoutLoading] = useState(false);
   const navigate = useNavigate();
   const [searchParams] = useSearchParams();
   // Preload first 2 product images for faster loading above the fold
@@ -72,6 +74,7 @@ const Loja = () => {
     });
   };
   return <div className="min-h-screen flex flex-col bg-white">
+      {isCheckoutLoading && <CheckoutLoadingOverlay />}
       {/* Prize Banner */}
       {showPrizeBanner && <div className="bg-gradient-to-r from-blue via-blue-hover to-blue text-white py-1.5 sm:py-2 px-2 sm:px-3 relative overflow-hidden animate-fade-in">
           <div className="container mx-auto flex items-center justify-center gap-2 relative">
@@ -128,7 +131,7 @@ const Loja = () => {
       <section id="products" className="py-6 sm:py-12 bg-gradient-to-b from-white to-muted/30">
         <div className="container mx-auto px-2 sm:px-4">
           <div className="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-4 gap-2 sm:gap-4 md:gap-6">
-            {products.map((product, index) => <ProductCard key={product.id} product={product} onClick={() => navigate(`/produto/${product.id}`)} index={index} />)}
+            {products.map((product, index) => <ProductCard key={product.id} product={product} onClick={() => navigate(`/produto/${product.id}`)} index={index} onCheckout={(url) => { setIsCheckoutLoading(true); setTimeout(() => { window.location.href = url; }, 1500); }} />)}
           </div>
         </div>
       </section>
@@ -140,11 +143,13 @@ const Loja = () => {
 const ProductCard = ({
   product,
   onClick,
-  index
+  index,
+  onCheckout
 }: {
   product: Product;
   onClick: () => void;
   index: number;
+  onCheckout: (url: string) => void;
 }) => {
   const [isHovered, setIsHovered] = useState(false);
   const [imageLoaded, setImageLoaded] = useState(false);
@@ -239,7 +244,7 @@ const ProductCard = ({
           disabled={isOutOfStock}
           onClick={(e) => {
             e.stopPropagation();
-            if (!isOutOfStock) window.location.href = product.checkoutUrl;
+            if (!isOutOfStock) onCheckout(product.checkoutUrl);
           }}
           className={`w-full font-semibold py-3 sm:py-5 text-sm sm:text-base rounded-lg sm:rounded-xl transition-all ${isOutOfStock ? 'bg-muted text-muted-foreground cursor-not-allowed' : 'bg-gradient-to-r from-blue to-blue-hover hover:from-blue-hover hover:to-blue text-white shadow-md shadow-blue/20 hover:shadow-lg hover:shadow-blue/30'}`}
         >
