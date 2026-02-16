@@ -482,7 +482,7 @@ const Roleta = () => {
               <p className="text-sky-400 text-xl font-semibold mb-4">Você ganhou um Brinox GRÁTIS!</p>
               <div className="bg-gradient-to-r from-blue-500/20 to-sky-500/20 rounded-xl p-4 mb-6 border border-blue-500/30">
                 <p className="text-gray-300 text-sm">
-                  Complete o cadastro rápido para confirmar seu prêmio e receber seu smartphone.
+                  Complete o cadastro rápido para confirmar seu prêmio e receber seu kit de panelas Brinox.
                 </p>
               </div>
               <button
