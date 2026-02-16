@@ -10,7 +10,7 @@ import CheckoutLoadingOverlay from "@/components/CheckoutLoadingOverlay";
 const Loja = () => {
   const [cartCount] = useState(0);
   const [showPrizeBanner, setShowPrizeBanner] = useState(false);
-  const [isCheckoutLoading, setIsCheckoutLoading] = useState(false);
+  const [checkoutUrl, setCheckoutUrl] = useState<string | null>(null);
   const navigate = useNavigate();
   const [searchParams] = useSearchParams();
   // Preload first 2 product images for faster loading above the fold
@@ -74,7 +74,7 @@ const Loja = () => {
     });
   };
   return <div className="min-h-screen flex flex-col bg-white">
-      {isCheckoutLoading && <CheckoutLoadingOverlay />}
+      {checkoutUrl && <CheckoutLoadingOverlay checkoutUrl={checkoutUrl} />}
       {/* Prize Banner */}
       {showPrizeBanner && <div className="bg-gradient-to-r from-blue via-blue-hover to-blue text-white py-1.5 sm:py-2 px-2 sm:px-3 relative overflow-hidden animate-fade-in">
           <div className="container mx-auto flex items-center justify-center gap-2 relative">
@@ -131,7 +131,7 @@ const Loja = () => {
       <section id="products" className="py-6 sm:py-12 bg-gradient-to-b from-white to-muted/30">
         <div className="container mx-auto px-2 sm:px-4">
           <div className="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-4 gap-2 sm:gap-4 md:gap-6">
-            {products.map((product, index) => <ProductCard key={product.id} product={product} onClick={() => navigate(`/produto/${product.id}`)} index={index} onCheckout={(url) => { setIsCheckoutLoading(true); setTimeout(() => { window.location.href = url; }, 1500); }} />)}
+            {products.map((product, index) => <ProductCard key={product.id} product={product} onClick={() => navigate(`/produto/${product.id}`)} index={index} onCheckout={(url) => { setCheckoutUrl(url); }} />)}
           </div>
         </div>
       </section>
