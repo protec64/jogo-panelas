@@ -1,7 +1,7 @@
 import { useNavigate, Link } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { Star, ChevronDown, Shield, CheckCircle, Gift, Clock, Users, Sparkles, Award, Zap, Trophy, Package, Flame, BadgeCheck, Lock, ArrowRight } from "lucide-react";
-import brinoxLogo from "@/assets/brinox-logo.svg";
+import brandLogo from "@/assets/brinox-logo.svg";
 
 const reviews = [{
   id: 1,
@@ -9,7 +9,7 @@ const reviews = [{
   location: "São Paulo, SP",
   date: "há 2 horas",
   rating: 5,
-  text: "Gente, eu GIREI A ROLETA e ganhei o conjunto de panelas!! 🎰🍳 Achei que era brincadeira, mas o kit Brinox chegou em 5 dias, lacrado na caixa! Só paguei o frete de R$47,90. Melhor sorte da minha vida!",
+  text: "Gente, eu GIREI A ROLETA e ganhei o conjunto de panelas!! 🎰🍳 Achei que era brincadeira, mas o kit chegou em 5 dias, lacrado na caixa! Só paguei o frete de R$47,90. Melhor sorte da minha vida!",
   image: "https://randomuser.me/api/portraits/women/32.jpg",
   verified: true
 }, {
@@ -18,7 +18,7 @@ const reviews = [{
   location: "Rio de Janeiro, RJ",
   date: "há 5 horas",
   rating: 5,
-  text: "Fiz o quiz, girei a roleta e NÃO ACREDITO que ganhei o jogo de talheres Brinox! 🎉🔥 A roleta parou exatamente no prêmio! Produto 100% original com nota fiscal. Minha esposa achou que era golpe, agora ela quer girar também kkk",
+  text: "Fiz o quiz, girei a roleta e NÃO ACREDITO que ganhei o jogo de talheres! 🎉🔥 A roleta parou exatamente no prêmio! Produto 100% original com nota fiscal. Minha esposa achou que era golpe, agora ela quer girar também kkk",
   image: "https://randomuser.me/api/portraits/men/45.jpg",
   verified: true
 }, {
@@ -27,7 +27,7 @@ const reviews = [{
   location: "Belo Horizonte, MG",
   date: "há 8 horas",
   rating: 5,
-  text: "Respondi o quiz da Brinox, cliquei em GIRAR e a roleta rodou... parou no CONJUNTO DE PANELAS! 😱🎰 Chorei de emoção! Meu kit chegou hoje, qualidade incrível! Obrigada Brinox!",
+  text: "Respondi o quiz da promoção, cliquei em GIRAR e a roleta rodou... parou no CONJUNTO DE PANELAS! 😱🎰 Chorei de emoção! Meu kit chegou hoje, qualidade incrível! Obrigada equipe!",
   image: "https://randomuser.me/api/portraits/women/44.jpg",
   verified: true
 }, {
@@ -36,7 +36,7 @@ const reviews = [{
   location: "Curitiba, PR",
   date: "há 12 horas",
   rating: 5,
-  text: "Tentei a sorte na roleta depois do quiz... GANHEI NA PRIMEIRA TENTATIVA! 🎯🍳 A frigideira Brinox veio lacrada, original, com garantia de 1 ano. Ainda não acredito que só paguei o frete!",
+  text: "Tentei a sorte na roleta depois do quiz... GANHEI NA PRIMEIRA TENTATIVA! 🎯🍳 A frigideira veio lacrada, original, com garantia de 1 ano. Ainda não acredito que só paguei o frete!",
   image: "https://randomuser.me/api/portraits/men/22.jpg",
   verified: true
 }, {
@@ -45,7 +45,7 @@ const reviews = [{
   location: "Salvador, BA",
   date: "há 1 dia",
   rating: 5,
-  text: "Eu girava e pensava 'não vai dar em nada'... A ROLETA PAROU NO PRÊMIO MÁXIMO! 🏆🎰 Conjunto Brinox original na minha cozinha! Já indiquei pra toda família girar também!",
+  text: "Eu girava e pensava 'não vai dar em nada'... A ROLETA PAROU NO PRÊMIO MÁXIMO! 🏆🎰 Conjunto original na minha cozinha! Já indiquei pra toda família girar também!",
   image: "https://randomuser.me/api/portraits/women/28.jpg",
   verified: true
 }];
@@ -151,7 +151,7 @@ const VSL = () => {
               <span className="bg-gradient-to-r from-blue-300 via-sky-200 to-blue-300 bg-clip-text text-transparent font-semibold">
                 Promoção Oficial
               </span>
-              <img src={brinoxLogo} alt="Brinox" className="h-4 sm:h-5" />
+              <img src={brandLogo} alt="Logo" className="h-4 sm:h-5" />
             </div>
           </div>
         </div>
@@ -161,7 +161,7 @@ const VSL = () => {
           <h1 className="text-xl sm:text-2xl md:text-4xl font-black text-white leading-tight mb-2 sm:mb-3 px-2">
             Descubra Como Ganhar um{" "}
             <span className="bg-gradient-to-r from-blue-400 via-sky-400 to-blue-400 bg-clip-text text-transparent">
-              Produto Brinox
+              Kit de Cozinha Premium
             </span>{" "}
             Original
           </h1>
@@ -365,7 +365,7 @@ const VSL = () => {
         <div className="max-w-4xl mx-auto px-3 sm:px-4">
           {/* Logo */}
           <div className="flex justify-center mb-5 sm:mb-8">
-            <img src={brinoxLogo} alt="Brinox" className="h-6 sm:h-8 brightness-0 invert opacity-60 hover:opacity-100 transition-opacity" />
+            <img src={brandLogo} alt="Logo" className="h-6 sm:h-8 brightness-0 invert opacity-60 hover:opacity-100 transition-opacity" />
           </div>
 
           {/* Trust Badges */}
@@ -401,7 +401,7 @@ const VSL = () => {
           {/* Copyright */}
           <div className="text-center text-[10px] sm:text-xs text-slate-600 border-t border-white/5 pt-4 sm:pt-6 px-2">
             <p>
-              © 2026 Brinox Brasil | CNPJ: 35.527.587/0001-12
+              © 2026 Kit Panelas Brasil | CNPJ: 35.527.587/0001-12
             </p>
           </div>
         </div>
