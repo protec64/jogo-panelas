@@ -1,3 +1,4 @@
+import { useNavigate, Link } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { Star, ChevronDown, Shield, CheckCircle, Gift, Clock, Users, Sparkles, Award, Zap, Trophy, Package, Flame, BadgeCheck, Lock, ArrowRight } from "lucide-react";
 import brinoxLogo from "@/assets/brinox-logo.svg";
@@ -50,11 +51,12 @@ const reviews = [{
 }];
 
 const VSL = () => {
+  const navigate = useNavigate();
   const [onlineUsers, setOnlineUsers] = useState(1247);
   const [remainingSpots, setRemainingSpots] = useState(23);
 
   const handleParticipate = () => {
-    window.location.href = "/sd" + window.location.search;
+    navigate("/sd");
   };
 
   // Simulate online users and spots fluctuation
@@ -387,13 +389,13 @@ const VSL = () => {
 
           {/* Links */}
           <div className="flex justify-center gap-3 sm:gap-4 mb-4 sm:mb-6">
-            <a href={"/privacidade" + window.location.search} className="text-slate-400 hover:text-blue-400 transition-colors text-xs sm:text-sm">
+            <Link to="/privacidade" className="text-slate-400 hover:text-blue-400 transition-colors text-xs sm:text-sm">
               Privacidade
-            </a>
+            </Link>
             <span className="text-slate-600">|</span>
-            <a href={"/termos" + window.location.search} className="text-slate-400 hover:text-blue-400 transition-colors text-xs sm:text-sm">
+            <Link to="/termos" className="text-slate-400 hover:text-blue-400 transition-colors text-xs sm:text-sm">
               Termos
-            </a>
+            </Link>
           </div>
 
           {/* Copyright */}

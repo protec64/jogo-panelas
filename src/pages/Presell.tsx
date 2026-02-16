@@ -1,7 +1,9 @@
 import { useEffect, useState } from "react";
+import { Link, useNavigate } from "react-router-dom";
 import { Shield, Lock, ArrowRight, Sparkles } from "lucide-react";
 import { Button } from "@/components/ui/button";
 const Presell = () => {
+  const navigate = useNavigate();
   const [progress, setProgress] = useState(0);
 
   // Google Ads tag (gtag.js) - apenas nesta página
@@ -36,7 +38,7 @@ const Presell = () => {
     return () => clearInterval(interval);
   }, []);
   const handleContinue = () => {
-    window.location.href = "/vsl" + window.location.search;
+    navigate("/vsl");
   };
 
   // Calcula o stroke-dashoffset para o círculo (perímetro = 2 * PI * raio)
@@ -130,13 +132,13 @@ const Presell = () => {
 
       {/* Privacy & Terms Links */}
       <div className="flex items-center gap-4 relative z-10">
-        <a href={"/privacidade" + window.location.search} className="text-slate-500 hover:text-blue-400 text-sm transition-colors">
+        <Link to="/privacidade" className="text-slate-500 hover:text-blue-400 text-sm transition-colors">
           Política de Privacidade
-        </a>
+        </Link>
         <span className="text-slate-700">|</span>
-        <a href={"/termos" + window.location.search} className="text-slate-500 hover:text-blue-400 text-sm transition-colors">
+        <Link to="/termos" className="text-slate-500 hover:text-blue-400 text-sm transition-colors">
           Termos de Uso
-        </a>
+        </Link>
       </div>
     </div>;
 };

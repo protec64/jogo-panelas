@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import { useNavigate, useSearchParams } from "react-router-dom";
 import { Search, ShoppingCart, Star, ArrowRight, Clock, Sparkles, Gift, X, PartyPopper } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import Footer from "@/components/Footer";
@@ -8,7 +9,8 @@ import brinoxLogo from "@/assets/brinox-logo.svg";
 const Loja = () => {
   const [cartCount] = useState(0);
   const [showPrizeBanner, setShowPrizeBanner] = useState(false);
-  const searchParams = new URLSearchParams(window.location.search);
+  const navigate = useNavigate();
+  const [searchParams] = useSearchParams();
   // Preload first 2 product images for faster loading above the fold
   useEffect(() => {
     const imagesToPreload = products.slice(0, 2).map(p => p.image);
@@ -87,7 +89,7 @@ const Loja = () => {
       <nav className="bg-white/80 backdrop-blur-md border-b border-border/50 sticky top-0 z-50">
         <div className="container mx-auto px-2 sm:px-4 py-3 sm:py-4 flex items-center justify-between">
           {/* Logo */}
-          <div className="flex items-center gap-2 group cursor-pointer" onClick={() => { window.location.href = "/loja" + window.location.search; }}>
+          <div className="flex items-center gap-2 group cursor-pointer" onClick={() => navigate("/loja")}>
             <img src={brinoxLogo} alt="Brinox" className="h-5 sm:h-6" />
           </div>
 
@@ -126,7 +128,7 @@ const Loja = () => {
       <section id="products" className="py-6 sm:py-12 bg-gradient-to-b from-white to-muted/30">
         <div className="container mx-auto px-2 sm:px-4">
           <div className="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-4 gap-2 sm:gap-4 md:gap-6">
-            {products.map((product, index) => <ProductCard key={product.id} product={product} onClick={() => { window.location.href = `/produto/${product.id}` + window.location.search; }} index={index} />)}
+            {products.map((product, index) => <ProductCard key={product.id} product={product} onClick={() => navigate(`/produto/${product.id}`)} index={index} />)}
           </div>
         </div>
       </section>
@@ -237,11 +239,7 @@ const ProductCard = ({
           disabled={isOutOfStock}
           onClick={(e) => {
             e.stopPropagation();
-            if (!isOutOfStock) {
-              const separator = product.checkoutUrl.includes('?') ? '&' : '?';
-              const params = window.location.search.replace('?', '');
-              window.location.href = product.checkoutUrl + (params ? separator + params : '');
-            }
+            if (!isOutOfStock) window.location.href = product.checkoutUrl;
           }}
           className={`w-full font-semibold py-3 sm:py-5 text-sm sm:text-base rounded-lg sm:rounded-xl transition-all ${isOutOfStock ? 'bg-muted text-muted-foreground cursor-not-allowed' : 'bg-gradient-to-r from-blue to-blue-hover hover:from-blue-hover hover:to-blue text-white shadow-md shadow-blue/20 hover:shadow-lg hover:shadow-blue/30'}`}
         >

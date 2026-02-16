@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 import { Gift, Star, CheckCircle2, Clock, ArrowRight, Trophy, Shield, Truck, Zap } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import confetti from "canvas-confetti";
@@ -50,6 +51,7 @@ const triggerVibration = () => {
 };
 
 const QuizResultView = () => {
+  const navigate = useNavigate();
   const [showContent, setShowContent] = useState(false);
   const [countdown, setCountdown] = useState({
     minutes: 14,
@@ -242,7 +244,7 @@ const QuizResultView = () => {
               {/* CTA */}
               <div className="p-6 pt-2">
                 <Button 
-                  onClick={() => { window.location.href = "/loja" + window.location.search; }} 
+                  onClick={() => navigate("/loja")} 
                   className="w-full bg-gradient-to-r from-green-500 via-green-600 to-emerald-600 hover:from-green-600 hover:via-green-700 hover:to-emerald-700 text-white font-bold py-7 rounded-2xl text-lg shadow-xl shadow-green-500/30 hover:shadow-2xl hover:shadow-green-500/40 transition-all duration-300 group"
                 >
                   <span className="flex items-center justify-center gap-2">

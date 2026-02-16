@@ -1,10 +1,12 @@
 import { useState, useEffect, useRef, useCallback, useMemo } from "react";
+import { useNavigate } from "react-router-dom";
 import confetti from "canvas-confetti";
 import brinoxLogo from "@/assets/brinox-logo.svg";
 
 const SPIN_DURATION = 3500; // 3.5 seconds spin
 
 const Roleta = () => {
+  const navigate = useNavigate();
   const [isSpinning, setIsSpinning] = useState(false);
   const [spinCount, setSpinCount] = useState(0);
   const [rotation, setRotation] = useState(0);
@@ -208,9 +210,7 @@ const Roleta = () => {
   };
 
   const handleContinue = () => {
-    const params = new URLSearchParams(window.location.search);
-    params.set("premio", "brinox");
-    window.location.href = "/loja?" + params.toString();
+    navigate("/loja?premio=brinox");
   };
 
   // Generate lights around the wheel - optimized with useMemo pattern

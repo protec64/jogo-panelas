@@ -1,8 +1,10 @@
 import { CheckCircle } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import { useNavigate } from "react-router-dom";
 import Footer from "@/components/Footer";
 
 const ThankYou = () => {
+  const navigate = useNavigate();
 
   return (
     <div className="min-h-screen flex flex-col bg-background">
@@ -29,7 +31,7 @@ const ThankYou = () => {
             
             {/* CTA Button */}
             <Button 
-              onClick={() => { window.location.href = "/" + window.location.search; }}
+              onClick={() => navigate("/")}
               className="w-full bg-orange hover:bg-orange-hover text-white font-medium py-6 text-base rounded-lg transition-colors"
             >
               VOLTAR AO INÍCIO

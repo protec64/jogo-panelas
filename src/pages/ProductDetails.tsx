@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { useParams } from "react-router-dom";
+import { useParams, useNavigate, Link } from "react-router-dom";
 import { ArrowLeft, Star, ShoppingCart, Truck, Shield, Clock, Check } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import Footer from "@/components/Footer";
@@ -9,6 +9,7 @@ import brinoxLogo from "@/assets/brinox-logo.svg";
 
 const ProductDetails = () => {
   const { id } = useParams();
+  const navigate = useNavigate();
   const [selectedImage, setSelectedImage] = useState(0);
   
   const product = getProductById(Number(id));
@@ -17,7 +18,7 @@ const ProductDetails = () => {
     return (
       <div className="min-h-screen flex flex-col items-center justify-center bg-white">
         <p className="text-muted-foreground text-lg mb-4">Produto não encontrado</p>
-        <Button onClick={() => { window.location.href = "/loja" + window.location.search; }} variant="outline">
+        <Button onClick={() => navigate("/loja")} variant="outline">
           Voltar para a Loja
         </Button>
       </div>
@@ -36,12 +37,12 @@ const ProductDetails = () => {
       {/* Navbar */}
       <nav className="bg-white border-b border-border/50 sticky top-0 z-50">
         <div className="container mx-auto px-4 py-4 flex items-center justify-between">
-          <a href={"/loja" + window.location.search} className="flex items-center gap-2">
+          <Link to="/loja" className="flex items-center gap-2">
             <img src={brinoxLogo} alt="Brinox" className="h-6" />
-          </a>
+          </Link>
 
           <button
-            onClick={() => { window.location.href = "/loja" + window.location.search; }}
+            onClick={() => navigate("/loja")}
             className="flex items-center gap-2 text-muted-foreground hover:text-card-foreground transition-colors"
           >
             <ArrowLeft className="w-4 h-4" />
@@ -156,13 +157,7 @@ const ProductDetails = () => {
               {/* Buy Button */}
               <Button
                 disabled={product.outOfStock}
-                onClick={() => {
-                  if (!product.outOfStock) {
-                    const separator = product.checkoutUrl.includes('?') ? '&' : '?';
-                    const params = window.location.search.replace('?', '');
-                    window.location.href = product.checkoutUrl + (params ? separator + params : '');
-                  }
-                }}
+                onClick={() => { if (!product.outOfStock) window.location.href = product.checkoutUrl; }}
                 className={`w-full font-semibold py-6 text-lg rounded-xl flex items-center justify-center gap-2 ${product.outOfStock ? 'bg-muted text-muted-foreground cursor-not-allowed' : 'bg-blue hover:bg-blue-hover text-white'}`}
               >
                 <ShoppingCart className="w-5 h-5" />
