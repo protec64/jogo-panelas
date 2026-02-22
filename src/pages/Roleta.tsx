@@ -142,7 +142,7 @@ const Roleta = () => {
   const handleRetry = () => setShowRetryModal(false);
   const handleContinue = () => navigate("/loja?premio=brinox");
 
-  const numLights = 28;
+  const numLights = 24;
   const lightsData = useMemo(() => Array.from({ length: numLights }, (_, i) => i), []);
 
   const wheelSegments = useMemo(() => {
@@ -192,7 +192,7 @@ const Roleta = () => {
   }, [segments]);
 
   return (
-    <div className="min-h-screen flex flex-col items-center justify-center px-4 py-6 overflow-hidden relative"
+    <div className="min-h-[100dvh] flex flex-col items-center justify-center px-3 py-4 sm:py-6 overflow-hidden relative"
       style={{ background: 'linear-gradient(180deg, #0B1120 0%, #0F172A 40%, #111827 100%)' }}>
 
       <style>{`
@@ -229,20 +229,20 @@ const Roleta = () => {
       </div>
 
       {/* Logo */}
-      <div className="relative z-10 mb-3 flex flex-col items-center">
-        <img src={brinoxLogo} alt="Logo" className="h-8 brightness-0 invert opacity-80" />
-        <p className="text-blue-300/50 text-[10px] tracking-[0.25em] uppercase mt-2 font-medium">Promoção Exclusiva</p>
+      <div className="relative z-10 mb-2 sm:mb-3 flex flex-col items-center">
+        <img src={brinoxLogo} alt="Logo" className="h-6 sm:h-8 brightness-0 invert opacity-80" />
+        <p className="text-blue-300/50 text-[9px] sm:text-[10px] tracking-[0.25em] uppercase mt-1 sm:mt-2 font-medium">Promoção Exclusiva</p>
       </div>
 
       {/* Title */}
-      <h1 className="relative z-10 text-xl md:text-2xl font-bold text-white text-center mb-6 px-4">
+      <h1 className="relative z-10 text-base sm:text-xl md:text-2xl font-bold text-white text-center mb-3 sm:mb-6 px-2">
         Gire a roleta e{" "}
         <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-blue-300">ganhe prêmios incríveis!</span>
       </h1>
 
       {/* === WHEEL === */}
       <div className="relative z-10" style={{ animation: isShaking ? 'shake 0.6s ease-in-out' : 'none' }}>
-        <div className="relative w-[330px] h-[330px] md:w-[400px] md:h-[400px]">
+        <div className="relative w-[280px] h-[280px] sm:w-[330px] sm:h-[330px] md:w-[400px] md:h-[400px]">
 
           {/* Outer shadow/glow */}
           <div className="absolute -inset-6 rounded-full" style={{
@@ -267,8 +267,8 @@ const Roleta = () => {
               const isLit = i % 2 === lightPhase;
               return (
                 <div key={i} className="absolute rounded-full" style={{
-                  width: '6px', height: '6px',
-                  left: `calc(${x}% - 3px)`, top: `calc(${y}% - 3px)`,
+                  width: '5px', height: '5px',
+                  left: `calc(${x}% - 2.5px)`, top: `calc(${y}% - 2.5px)`,
                   background: isLit
                     ? 'radial-gradient(circle, #DBEAFE 0%, #60A5FA 50%, #3B82F6 100%)'
                     : 'radial-gradient(circle, #475569 0%, #334155 100%)',
@@ -349,8 +349,8 @@ const Roleta = () => {
           </div>
 
           {/* Pointer — sleek modern triangle */}
-          <div className="absolute -top-4 left-1/2 -translate-x-1/2 z-30">
-            <svg width="36" height="48" viewBox="0 0 36 48" fill="none">
+          <div className="absolute -top-3 sm:-top-4 left-1/2 -translate-x-1/2 z-30">
+            <svg width="28" height="38" viewBox="0 0 36 48" fill="none" className="sm:w-[36px] sm:h-[48px]">
               <defs>
                 <linearGradient id="ptr-g" x1="18" y1="0" x2="18" y2="48" gradientUnits="userSpaceOnUse">
                   <stop offset="0%" stopColor="#CBD5E1" />
@@ -387,7 +387,7 @@ const Roleta = () => {
 
       {/* SPIN BUTTON */}
       <button onClick={handleSpin} disabled={isSpinning || spinCount >= 3}
-        className={`relative z-10 mt-8 px-14 py-4 text-base font-bold rounded-2xl transition-all transform overflow-hidden ${
+        className={`relative z-10 mt-5 sm:mt-8 px-10 sm:px-14 py-3 sm:py-4 text-sm sm:text-base font-bold rounded-2xl transition-all transform overflow-hidden ${
           isSpinning || spinCount >= 3 ? "scale-95 cursor-not-allowed" : "hover:scale-105 active:scale-95"
         }`}
         style={{
@@ -416,22 +416,22 @@ const Roleta = () => {
         ) : spinCount >= 3 ? "🎉 VOCÊ GANHOU!" : spinCount >= 1 ? `TENTAR NOVAMENTE (${3 - spinCount}ª chance)` : "GIRAR AGORA"}
       </button>
 
-      <p className="relative z-10 mt-4 text-slate-500 text-[10px] text-center max-w-xs">
+      <p className="relative z-10 mt-3 sm:mt-4 text-slate-500 text-[9px] sm:text-[10px] text-center max-w-xs px-4">
         Promoção válida por tempo limitado. Ao girar, você concorda com os termos da promoção.
       </p>
 
       {/* ===== MODALS ===== */}
       {showRetryModal && (
         <div className="fixed inset-0 bg-black/85 backdrop-blur-md flex items-center justify-center z-50 p-4">
-          <div className="rounded-2xl p-8 max-w-md w-full border animate-scale-in"
+          <div className="rounded-2xl p-6 sm:p-8 max-w-md w-full border animate-scale-in"
             style={{
               background: 'linear-gradient(145deg, #1E293B, #0F172A)',
               borderColor: 'rgba(100,116,139,0.2)',
               boxShadow: '0 0 60px rgba(0,0,0,0.6), inset 0 1px 1px rgba(255,255,255,0.05)',
             }}>
             <div className="text-center">
-              <div className="text-6xl mb-4">😢</div>
-              <h2 className="text-2xl font-bold text-white mb-2">Que pena!</h2>
+              <div className="text-5xl sm:text-6xl mb-3 sm:mb-4">😢</div>
+              <h2 className="text-xl sm:text-2xl font-bold text-white mb-2">Que pena!</h2>
               <p className="text-blue-400 text-lg font-semibold mb-4">Você caiu em "Tente Novamente"</p>
               <div className="rounded-xl p-4 mb-6" style={{
                 background: 'rgba(37,99,235,0.08)',
@@ -457,16 +457,16 @@ const Roleta = () => {
 
       {showWinModal && (
         <div className="fixed inset-0 bg-black/85 backdrop-blur-md flex items-center justify-center z-50 p-4">
-          <div className="rounded-2xl p-8 max-w-md w-full border animate-scale-in"
+          <div className="rounded-2xl p-6 sm:p-8 max-w-md w-full border animate-scale-in"
             style={{
               background: 'linear-gradient(145deg, #1E293B, #0F172A)',
               borderColor: 'rgba(59,130,246,0.3)',
               boxShadow: '0 0 80px rgba(37,99,235,0.12), inset 0 1px 1px rgba(255,255,255,0.05)',
             }}>
             <div className="text-center">
-              <div className="text-6xl mb-4">🎉</div>
-              <h2 className="text-2xl font-bold text-white mb-2">Parabéns!</h2>
-              <p className="text-blue-400 text-xl font-semibold mb-4">Você ganhou um Kit GRÁTIS!</p>
+              <div className="text-5xl sm:text-6xl mb-3 sm:mb-4">🎉</div>
+              <h2 className="text-xl sm:text-2xl font-bold text-white mb-2">Parabéns!</h2>
+              <p className="text-blue-400 text-lg sm:text-xl font-semibold mb-4">Você ganhou um Kit GRÁTIS!</p>
               <div className="rounded-xl p-4 mb-6" style={{
                 background: 'rgba(37,99,235,0.08)',
                 border: '1px solid rgba(59,130,246,0.2)',
