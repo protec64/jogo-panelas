@@ -20,13 +20,22 @@ const Roleta = () => {
   const winAudioRef = useRef<HTMLAudioElement | null>(null);
   const loseAudioRef = useRef<HTMLAudioElement | null>(null);
 
+  // Programmatic tick sound using Web Audio API for realistic flapper click
+  const audioCtxRef = useRef<AudioContext | null>(null);
+
+  const getAudioCtx = useCallback(() => {
+    if (!audioCtxRef.current) {
+      audioCtxRef.current = new (window.AudioContext || (window as any).webkitAudioContext)();
+    }
+    return audioCtxRef.current;
+  }, []);
+
   useEffect(() => {
-    tickAudioRef.current = new Audio('https://assets.mixkit.co/active_storage/sfx/2568/2568-preview.mp3');
-    tickAudioRef.current.volume = 0.15;
-    tickAudioRef.current.load();
-    winAudioRef.current = new Audio('https://assets.mixkit.co/active_storage/sfx/2020/2020-preview.mp3');
+    // Casino win fanfare
+    winAudioRef.current = new Audio('https://assets.mixkit.co/active_storage/sfx/2000/2000-preview.mp3');
     winAudioRef.current.volume = 0.5;
     winAudioRef.current.load();
+    // Lose / disappointment sound
     loseAudioRef.current = new Audio('https://assets.mixkit.co/active_storage/sfx/2955/2955-preview.mp3');
     loseAudioRef.current.volume = 0.4;
     loseAudioRef.current.load();
@@ -57,9 +66,51 @@ const Roleta = () => {
     }, 250);
   }, []);
 
+  // Realistic mechanical flapper click via Web Audio API
   const playTick = useCallback(() => {
-    if (tickAudioRef.current) { tickAudioRef.current.currentTime = 0; tickAudioRef.current.play().catch(() => {}); }
-  }, []);
+    try {
+      const ctx = getAudioCtx();
+      const now = ctx.currentTime;
+
+      // Sharp click noise burst (flapper hitting peg)
+      const bufferSize = ctx.sampleRate * 0.015; // 15ms burst
+      const buffer = ctx.createBuffer(1, bufferSize, ctx.sampleRate);
+      const data = buffer.getChannelData(0);
+      for (let i = 0; i < bufferSize; i++) {
+        // Decaying noise with metallic character
+        const decay = Math.exp(-i / (bufferSize * 0.15));
+        data[i] = (Math.random() * 2 - 1) * decay * 0.6;
+      }
+      const noiseSource = ctx.createBufferSource();
+      noiseSource.buffer = buffer;
+
+      // Bandpass filter for metallic "click" character
+      const bpFilter = ctx.createBiquadFilter();
+      bpFilter.type = 'bandpass';
+      bpFilter.frequency.value = 3500;
+      bpFilter.Q.value = 2.5;
+
+      // High-pass to remove boominess
+      const hpFilter = ctx.createBiquadFilter();
+      hpFilter.type = 'highpass';
+      hpFilter.frequency.value = 800;
+
+      // Quick volume envelope
+      const gain = ctx.createGain();
+      gain.gain.setValueAtTime(0.35, now);
+      gain.gain.exponentialRampToValueAtTime(0.001, now + 0.02);
+
+      noiseSource.connect(bpFilter);
+      bpFilter.connect(hpFilter);
+      hpFilter.connect(gain);
+      gain.connect(ctx.destination);
+
+      noiseSource.start(now);
+      noiseSource.stop(now + 0.025);
+    } catch (e) {
+      // Fallback: silent
+    }
+  }, [getAudioCtx]);
 
   useEffect(() => {
     if (!isSpinning) { if (animationRef.current) cancelAnimationFrame(animationRef.current); return; }
