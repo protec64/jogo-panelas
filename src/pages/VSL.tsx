@@ -180,7 +180,7 @@ const VSL = () => {
           <div className="relative p-[2px] sm:p-[3px] rounded-xl sm:rounded-2xl bg-gradient-to-r from-blue-500 via-sky-400 to-blue-500 shadow-xl sm:shadow-2xl shadow-blue-500/20">
             <div className="bg-slate-950 rounded-xl sm:rounded-2xl overflow-hidden">
               <div dangerouslySetInnerHTML={{
-                __html: `<vturb-smartplayer id="vid-697e978d6300fb8f8edef138" style="display: block; margin: 0 auto; width: 100%;"></vturb-smartplayer>`
+                __html: `<vturb-smartplayer id="vid-69ccace912f1a486e4190b09" style="display: block; margin: 0 auto; width: 100%;"></vturb-smartplayer>`
               }} />
             </div>
           </div>
