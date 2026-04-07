@@ -71,7 +71,7 @@ const VSL = () => {
   // Load Vturb player script
   useEffect(() => {
     const script = document.createElement("script");
-    script.src = "https://scripts.converteai.net/f3ed0bc5-1481-4ed5-9287-6fd7423d7f7f/players/697e978d6300fb8f8edef138/v4/player.js";
+    script.src = "https://scripts.converteai.net/822b40d4-cbe3-4cfb-b071-1fb6b2561def/players/69ccace912f1a486e4190b09/v4/player.js";
     script.async = true;
     document.head.appendChild(script);
     return () => {
