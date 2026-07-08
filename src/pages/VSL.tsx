@@ -71,7 +71,7 @@ const VSL = () => {
   // Load Vturb player script
   useEffect(() => {
     const script = document.createElement("script");
-    script.src = "https://scripts.converteai.net/822b40d4-cbe3-4cfb-b071-1fb6b2561def/players/69ccace912f1a486e4190b09/v4/player.js";
+    script.src = "https://scripts.converteai.net/a76fbfe7-60de-48c6-9d95-f823a50f03cd/players/6a4dc4e8acb11b669297debc/v4/player.js";
     script.async = true;
     document.head.appendChild(script);
     return () => {
@@ -81,6 +81,7 @@ const VSL = () => {
       }
     };
   }, []);
+
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-slate-950 via-slate-900 to-slate-950 overflow-hidden">
