@@ -49,7 +49,7 @@ export const products: Product[] = [
       { label: "Peças", value: "8 unidades" },
       { label: "Garantia", value: "12 meses" },
     ],
-    checkoutUrl: "https://pay.tpagamentos.online/1VOvGVrRNqXGD62",
+    checkoutUrl: "https://checkout-seguros.lovable.app/produto1",
     reviews: [
       { id: 1, name: "Maria Silva", rating: 5, date: "15/01/2025", comment: "Ganhei na roleta e não acreditei! Panelas maravilhosas, o revestimento cerâmico é excelente. Só paguei a taxa de envio!", verified: true },
       { id: 2, name: "João Santos", rating: 5, date: "12/01/2025", comment: "Participei da promoção da roleta e ganhei esse jogo lindo! A cor vanilla combinou perfeitamente com minha cozinha.", verified: true },
@@ -81,7 +81,7 @@ export const products: Product[] = [
       { label: "Peças", value: "7 unidades" },
       { label: "Garantia", value: "12 meses" },
     ],
-    checkoutUrl: "https://pay.tpagamentos.online/1VOvGVrRNqXGD62",
+    checkoutUrl: "https://checkout-seguros.lovable.app/produto2",
     reviews: [
       { id: 1, name: "Patricia Lima", rating: 5, date: "18/01/2025", comment: "Ganhei na roleta da Brinox e chegou super rápido! As 7 peças são lindas e de ótima qualidade.", verified: true },
       { id: 2, name: "Roberto Alves", rating: 5, date: "14/01/2025", comment: "Participei da promoção da roleta e tive a sorte de ganhar! A cor preta é elegante demais.", verified: true },
@@ -112,7 +112,7 @@ export const products: Product[] = [
       { label: "Peças", value: "8 unidades" },
       { label: "Garantia", value: "12 meses" },
     ],
-    checkoutUrl: "https://pay.tpagamentos.online/1VOvGVrRNqXGD62",
+    checkoutUrl: "https://checkout-seguros.lovable.app/produto3",
     reviews: [
       { id: 1, name: "Luciana Martins", rating: 5, date: "20/01/2025", comment: "Ganhei na roleta e o vermelho é mais lindo pessoalmente! Deixou minha cozinha muito mais alegre.", verified: true },
       { id: 2, name: "Eduardo Ribeiro", rating: 5, date: "16/01/2025", comment: "Não acreditei quando ganhei na promoção da roleta! O revestimento cerâmico é superior a qualquer outra que já tive.", verified: true },
