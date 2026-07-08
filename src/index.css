@@ -2,78 +2,76 @@
 @tailwind components;
 @tailwind utilities;
 
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
-
 @layer base {
   :root {
+    /* Refined navy-trust palette */
     --background: 217 91% 50%;
     --foreground: 0 0% 100%;
 
     --card: 0 0% 100%;
-    --card-foreground: 0 0% 20%;
+    --card-foreground: 220 30% 14%;
 
     --popover: 0 0% 100%;
-    --popover-foreground: 0 0% 20%;
+    --popover-foreground: 220 30% 14%;
 
     --primary: 217 91% 50%;
     --primary-foreground: 0 0% 100%;
 
-    --secondary: 0 0% 96%;
-    --secondary-foreground: 0 0% 20%;
+    --secondary: 217 30% 97%;
+    --secondary-foreground: 220 30% 20%;
 
-    --muted: 0 0% 96%;
-    --muted-foreground: 0 0% 45%;
+    --muted: 220 20% 96%;
+    --muted-foreground: 220 12% 46%;
 
-    --accent: 217 91% 50%;
+    --accent: 199 89% 48%;
     --accent-foreground: 0 0% 100%;
 
-    --destructive: 0 84.2% 60.2%;
+    --destructive: 0 84% 60%;
     --destructive-foreground: 0 0% 100%;
 
-    --border: 0 0% 90%;
-    --input: 0 0% 90%;
+    --border: 220 15% 91%;
+    --input: 220 15% 91%;
     --ring: 217 91% 50%;
 
-    --radius: 0.5rem;
+    --radius: 0.875rem;
 
-    /* Custom colors */
-    --header-bg: 0 0% 25%;
+    /* Custom tokens */
+    --header-bg: 220 30% 14%;
     --header-foreground: 0 0% 100%;
-    --badge-bg: 0 0% 30%;
+    --badge-bg: 220 30% 20%;
     --badge-foreground: 0 0% 100%;
     --blue: 217 91% 50%;
-    --blue-hover: 217 91% 45%;
-    --success: 142 76% 36%;
-    --success-light: 142 76% 95%;
+    --blue-hover: 217 91% 44%;
+    --blue-soft: 217 91% 96%;
+    --success: 142 71% 42%;
+    --success-light: 142 71% 95%;
+
+    /* Elevation shadows */
+    --shadow-sm: 0 1px 2px 0 hsl(220 30% 14% / 0.05);
+    --shadow-md: 0 4px 12px -2px hsl(220 30% 14% / 0.08), 0 2px 4px -2px hsl(220 30% 14% / 0.04);
+    --shadow-lg: 0 12px 32px -8px hsl(220 30% 14% / 0.12), 0 4px 8px -4px hsl(220 30% 14% / 0.06);
+    --shadow-glow: 0 8px 24px -6px hsl(var(--blue) / 0.35);
   }
 
   .dark {
     --background: 217 91% 50%;
     --foreground: 0 0% 100%;
-
     --card: 0 0% 100%;
-    --card-foreground: 0 0% 20%;
-
+    --card-foreground: 220 30% 14%;
     --popover: 0 0% 100%;
-    --popover-foreground: 0 0% 20%;
-
+    --popover-foreground: 220 30% 14%;
     --primary: 217 91% 50%;
     --primary-foreground: 0 0% 100%;
-
-    --secondary: 0 0% 96%;
-    --secondary-foreground: 0 0% 20%;
-
-    --muted: 0 0% 96%;
-    --muted-foreground: 0 0% 45%;
-
-    --accent: 217 91% 50%;
+    --secondary: 217 30% 97%;
+    --secondary-foreground: 220 30% 20%;
+    --muted: 220 20% 96%;
+    --muted-foreground: 220 12% 46%;
+    --accent: 199 89% 48%;
     --accent-foreground: 0 0% 100%;
-
-    --destructive: 0 84.2% 60.2%;
+    --destructive: 0 84% 60%;
     --destructive-foreground: 0 0% 100%;
-
-    --border: 0 0% 90%;
-    --input: 0 0% 90%;
+    --border: 220 15% 91%;
+    --input: 220 15% 91%;
     --ring: 217 91% 50%;
   }
 }
@@ -83,8 +81,65 @@
     @apply border-border;
   }
 
+  html {
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-rendering: optimizeLegibility;
+  }
+
   body {
     @apply bg-background text-foreground font-sans;
-    font-family: 'Inter', sans-serif;
+    font-family: 'DM Sans', system-ui, sans-serif;
+    font-feature-settings: 'ss01', 'cv11';
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    font-family: 'Space Grotesk', 'DM Sans', system-ui, sans-serif;
+    letter-spacing: -0.015em;
+  }
+
+  h1 { letter-spacing: -0.025em; }
+  h2 { letter-spacing: -0.02em; }
+
+  ::selection {
+    background: hsl(var(--blue) / 0.2);
+    color: hsl(var(--card-foreground));
+  }
+
+  /* Refined focus ring */
+  :focus-visible {
+    outline: 2px solid hsl(var(--ring));
+    outline-offset: 2px;
+    border-radius: 4px;
+  }
+
+  button:focus-visible,
+  a:focus-visible {
+    outline-offset: 3px;
+  }
+}
+
+@layer utilities {
+  .scrollbar-hide {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+  .scrollbar-hide::-webkit-scrollbar {
+    display: none;
+  }
+
+  .shadow-elevated {
+    box-shadow: var(--shadow-lg);
+  }
+  .shadow-soft {
+    box-shadow: var(--shadow-md);
+  }
+  .shadow-glow-blue {
+    box-shadow: var(--shadow-glow);
+  }
+
+  /* Smooth transitions default */
+  .transition-smooth {
+    transition: all 220ms cubic-bezier(0.4, 0, 0.2, 1);
   }
 }
