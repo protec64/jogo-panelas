@@ -1,4 +1,4 @@
-import { CheckCircle2, ArrowRight } from "lucide-react";
+import { CheckCircle } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { useNavigate } from "react-router-dom";
 import Footer from "@/components/Footer";
@@ -8,38 +8,39 @@ const ThankYou = () => {
 
   return (
     <div className="min-h-screen flex flex-col bg-background">
+      {/* Main Content */}
       <main className="flex-1 flex items-center justify-center px-4 py-12">
-        <div className="w-full max-w-md mx-auto animate-fade-in">
-          <div className="bg-card text-card-foreground rounded-3xl shadow-elevated px-8 py-12 text-center border border-border/50">
+        <div className="w-full max-w-md mx-auto">
+          <div className="bg-card text-card-foreground rounded-xl shadow-xl px-8 py-12 text-center">
             {/* Success Icon */}
             <div className="flex justify-center mb-6">
-              <div className="relative">
-                <div className="absolute inset-0 bg-success/20 rounded-full blur-xl" />
-                <div className="relative w-20 h-20 rounded-full bg-success-light flex items-center justify-center border border-success/20">
-                  <CheckCircle2 className="w-10 h-10 text-success" strokeWidth={2} />
-                </div>
+              <div className="w-20 h-20 rounded-full bg-success-light flex items-center justify-center">
+                <CheckCircle className="w-12 h-12 text-success" />
               </div>
             </div>
-
-            <h2 className="font-display text-2xl md:text-3xl font-semibold mb-3 tracking-tight">
+            
+            {/* Title */}
+            <h2 className="text-2xl font-bold mb-4">
               Obrigado pela sua participação!
             </h2>
-
-            <p className="text-muted-foreground mb-8 leading-relaxed text-[15px]">
+            
+            {/* Description */}
+            <p className="text-muted-foreground mb-8 leading-relaxed">
               Sua opinião é muito importante para nós. Agradecemos por dedicar seu tempo para responder nossa pesquisa.
             </p>
-
-            <Button
+            
+            {/* CTA Button */}
+            <Button 
               onClick={() => navigate("/")}
-              className="w-full bg-blue hover:bg-blue-hover text-white font-semibold py-6 text-base rounded-xl transition-smooth group"
+              className="w-full bg-orange hover:bg-orange-hover text-white font-medium py-6 text-base rounded-lg transition-colors"
             >
-              Voltar ao início
-              <ArrowRight className="ml-2 h-4 w-4 group-hover:translate-x-1 transition-transform" />
+              VOLTAR AO INÍCIO
             </Button>
           </div>
         </div>
       </main>
-
+      
+      {/* Footer */}
       <Footer variant="minimal" />
     </div>
   );
