@@ -163,7 +163,7 @@ const ProductDetails = () => {
                 className={`w-full font-semibold py-6 text-lg rounded-xl flex items-center justify-center gap-2 ${product.outOfStock ? 'bg-muted text-muted-foreground cursor-not-allowed' : 'bg-blue hover:bg-blue-hover text-white'}`}
               >
                 <ShoppingCart className="w-5 h-5" />
-                {product.outOfStock ? 'Produto Esgotado' : 'Comprar Agora'}
+                {product.outOfStock ? 'Produto Esgotado' : 'Resgatar Agora'}
               </Button>
 
               {/* Benefits */}
