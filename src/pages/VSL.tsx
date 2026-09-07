@@ -71,7 +71,7 @@ const VSL = () => {
   // Load Vturb player script
   useEffect(() => {
     const script = document.createElement("script");
-    script.src = "https://scripts.converteai.net/a76fbfe7-60de-48c6-9d95-f823a50f03cd/players/6a4dc4e8acb11b669297debc/v4/player.js";
+    script.src = "https://scripts.converteai.net/2eb9aeb7-a826-4037-ad36-b5f1622e5b41/players/6a9cbf0f125b48ebfaa16591/v4/player.js";
     script.async = true;
     document.head.appendChild(script);
     return () => {
@@ -181,7 +181,7 @@ const VSL = () => {
           <div className="relative p-[2px] sm:p-[3px] rounded-xl sm:rounded-2xl bg-gradient-to-r from-blue-500 via-sky-400 to-blue-500 shadow-xl sm:shadow-2xl shadow-blue-500/20">
             <div className="bg-slate-950 rounded-xl sm:rounded-2xl overflow-hidden">
               <div dangerouslySetInnerHTML={{
-                __html: `<vturb-smartplayer id="vid-6a4dc4e8acb11b669297debc" style="display: block; margin: 0 auto; width: 100%;"></vturb-smartplayer>`
+                __html: `<vturb-smartplayer id="vid-6a9cbf0f125b48ebfaa16591" style="display: block; margin: 0 auto; width: 100%;"><div class="vturb-player-placeholder" style="position: relative; width: 100%; padding: 56.25% 0 0; z-index: 0; background-color: black;"></div></vturb-smartplayer>`
               }} />
 
             </div>
